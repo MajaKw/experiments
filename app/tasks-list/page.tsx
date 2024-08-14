@@ -1,45 +1,28 @@
-function Task( { title } : {title : string}){
-    return <div>{ title }</div>
+function Task( {taskProps} : {taskProps: TaskProps}){
+    const taskStyle = {
+        backgroundColor: taskProps.done ? 'blue' : 'red'
+    }
+
+    if(taskProps.today)
+        return <div style={taskStyle}>{taskProps.title}</div>
+    return null;
 }
 
-
-interface SuperTaskProps {
+interface TaskProps {
     title: string;
-    disabled: boolean;
-    number: number;
-}
-
-function createTitle(){
-    return "title created by JavaScript function"
-}
-
-
-function SuperTask({title, disabled, number} : SuperTaskProps){
-    return <div>{title} {number} {disabled}</div>
+    done: boolean;
+    today: boolean
 }
 
 export default function TasksList(){
-    const title = "Alibaba";
-    const number = 5;
-    const disabled = true;
-
-    const myObject = {
-        title: "Jadwiga królowa",
-        number: 100
-    }
-
-
     return(
-        <div style={{
-            color: 'blue'
-        }}>
-            <Task title={"Task 1 str "} />
-            <Task title={"Task 2 str"} />
-            <Task title={"Task 3 str"} />
-            <SuperTask disabled={false} title={"cniwhjei2qod: "} number={3}/>
-            <SuperTask disabled={disabled} number = {number} title={title}/>
-            <Task title={createTitle()}/>
-            <Task title={myObject.title}/>
+        <div>
+            <Task taskProps={{ title: "Buy bananas", done: true, today: false }} />
+            <Task taskProps={{title: "Do laundry", done: true, today: true }}/>
+            <Task taskProps={{title: "Vacuum my room", done: false, today: false }}/>
+            <Task taskProps={{title: "Stretch", done: false, today: true }}/>
+            <Task taskProps={{title: "Doctor", done: false, today: true }}/>
+            <Task taskProps={{title: "Horse", done: false, today: true }}/>
         </div>
     )
 }
