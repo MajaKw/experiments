@@ -4,12 +4,7 @@ function Task( {taskProps} : {taskProps: TaskProps}){
     }
 
     return <li style={taskStyle}>
-        { taskProps.done ? (
-            <del>
-                  taskProps.title + " ✔"
-            </del>
-            ): (taskProps.title)
-        } 
+        {taskProps.title}{taskProps.done && "✔"}
         </li>
 }
 
