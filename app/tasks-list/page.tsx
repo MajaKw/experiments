@@ -3,9 +3,14 @@ function Task( {taskProps} : {taskProps: TaskProps}){
         backgroundColor: taskProps.done ? 'blue' : 'red'
     }
 
-    if(taskProps.today)
-        return <div style={taskStyle}>{taskProps.title}</div>
-    return null;
+    return <li style={taskStyle}>
+        { taskProps.done ? (
+            <del>
+                  taskProps.title + " ✔"
+            </del>
+            ): (taskProps.title)
+        } 
+        </li>
 }
 
 interface TaskProps {
@@ -16,14 +21,14 @@ interface TaskProps {
 
 export default function TasksList(){
     return(
-        <div>
+        <ul>
             <Task taskProps={{ title: "Buy bananas", done: true, today: false }} />
             <Task taskProps={{title: "Do laundry", done: true, today: true }}/>
             <Task taskProps={{title: "Vacuum my room", done: false, today: false }}/>
             <Task taskProps={{title: "Stretch", done: false, today: true }}/>
             <Task taskProps={{title: "Doctor", done: false, today: true }}/>
             <Task taskProps={{title: "Horse", done: false, today: true }}/>
-        </div>
+        </ul>
     )
 }
 
